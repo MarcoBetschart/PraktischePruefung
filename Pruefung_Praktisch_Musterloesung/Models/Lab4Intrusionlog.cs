@@ -71,5 +71,40 @@ namespace Pruefung_Praktisch_Musterloesung.Models
 
             return ret;
         }
-    }
+
+		public List<List<string>> getIpCount()
+		{
+			SqlConnection con = this.setUp();
+
+			SqlCommand cmd_credentials = new SqlCommand();
+			cmd_credentials.CommandText = "SELECT IP, Count(IP) FROM [dbo].[Intrusionlog] ORDER BY CreatedOn DESC GROUP BY [Ip]";
+			cmd_credentials.Connection = con;
+
+			con.Open();
+
+			SqlDataReader reader = cmd_credentials.ExecuteReader();
+
+			List<List<string>> ret = new List<List<string>>();
+
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					List<string> local_entries = new List<string>();
+
+					var ip = reader.GetValue(0).ToString();
+					var count = reader.GetValue(1).ToString();
+
+					local_entries.Add(ip);
+					local_entries.Add(count);
+
+					ret.Add(local_entries);
+				}
+			}
+
+			con.Close();
+
+			return ret;
+		}
+	}
 }
