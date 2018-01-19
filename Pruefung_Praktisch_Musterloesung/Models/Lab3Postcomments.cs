@@ -20,8 +20,8 @@ namespace Pruefung_Praktisch_Musterloesung.Models
         {
             SqlConnection con = this.setUp();
 
-            SqlCommand cmd_credentials = new SqlCommand();
-            cmd_credentials.CommandText = "INSERT INTO [dbo].[Comment] ([PostId], [Comment], [CreatedOn]) VALUES('" + postid + "','" + comment + "', getdate())";
+			SqlCommand cmd_credentials = new SqlCommand();
+            cmd_credentials.CommandText = "INSERT INTO [dbo].[Comment] ([PostId], [Comment], [CreatedOn]) VALUES(':PostId => " + postid + "','" + comment + "', getdate())";
             cmd_credentials.Connection = con;
 
             con.Open();

@@ -49,7 +49,11 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
 
             Lab2Userlogin model = new Lab2Userlogin();
 
-            if (model.checkCredentials(username, password))
+			var regex = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)",RegexOptions.Singleline|RegexOptions.IgnoreCase);
+			username = regex.Replace(username, "");
+			password = regex.Replace(password, "");
+			
+			if (model.checkCredentials(username, password))
             {
                 model.storeSessionInfos(username, password, sessionid);
 
