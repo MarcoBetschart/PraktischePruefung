@@ -9,14 +9,28 @@ namespace Pruefung_Praktisch_Musterloesung.Controllers
 {
     public class Lab1Controller : Controller
     {
-        /**
+		/**
          * 
          * ANTWORTEN BITTE HIER
+		 * 
+		 * 1. Directory Listing & File Enumeration Attacken
+		 * Directory Traversials
+		 * 
+		 * 2.http://localhost:50374/Lab1/index?type=files
+		 * http://localhost:50374/Lab1/index?type=private/files
+		 * 
+		 * 3.Directory Listing: Je nach Konfiguration des Webservers werden Zugriffe auf Ordner (und nicht Einzeldokumente) akzeptiert oder nicht. Ist der Zugriff auf einen Ordner zugelassen, wird der Inhalt dieses Ornders entsprechend angezeigt und die darin enthaltenen Dokumente als Link dargestellt. So könnten nun alle  Files angezeigt werden
+		 * Parameter so zu modifizieren, dass auch andere
+Dokumente bzw. Pfade angezeigt werden. Dies könnte z.B. so aussehen http://localhost:50374/Lab1/index?type=private/files
+		 * 
+		 * 
+		 * 
+		 * 
          * 
          * */
 
 
-        public ActionResult Index()
+		public ActionResult Index()
         {
             var type = Request.QueryString["type"];
 
