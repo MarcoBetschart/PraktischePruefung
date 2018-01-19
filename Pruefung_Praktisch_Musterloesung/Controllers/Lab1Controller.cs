@@ -43,26 +43,28 @@ Dokumente bzw. Pfade angezeigt werden. Dies könnte z.B. so aussehen http://loca
 
             List<List<string>> fileUriList = new List<List<string>>();
 
-            if (Directory.Exists(Server.MapPath(path)))
-            {
-                var scheme = Request.Url.Scheme; 
-                var host = Request.Url.Host; 
-                var port = Request.Url.Port;
-                
-                string[] fileEntries = Directory.GetFiles(Server.MapPath(path));
-                foreach (var filepath in fileEntries)
-                {
-                    var filename = Path.GetFileName(filepath);
-                    var imageuri = scheme + "://" + host + ":" + port + path.Replace("~", "") + "/" + filename;
+			if (Directory.Exists(Server.MapPath(path)))
+			{
+				var scheme = Request.Url.Scheme;
+				var host = Request.Url.Host;
+				var port = Request.Url.Port;
 
-                    var urilistelement = new List<string>();
-                    urilistelement.Add(filename);
-                    urilistelement.Add(imageuri);
-                    urilistelement.Add(type);
+				string[] fileEntries = Directory.GetFiles(Server.MapPath(path));
+				foreach (var filepath in fileEntries)
+				{
+					var filename = Path.GetFileName(filepath);
+					var imageuri = scheme + "://" + host + ":" + port + path.Replace("~", "") + "/" + filename;
 
-                    fileUriList.Add(urilistelement);
-                }
-            }
+					var urilistelement = new List<string>();
+					urilistelement.Add(filename);
+					urilistelement.Add(imageuri);
+					urilistelement.Add(type);
+
+					fileUriList.Add(urilistelement);
+				}
+			}
+			else
+				return RedirectToAction("Index", "Home");
             
             return View(fileUriList);
         }
