@@ -9,19 +9,22 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Data.SqlClient;
 using Pruefung_Praktisch_Musterloesung.Models;
+using System.Text.RegularExpressions;
 
 namespace Pruefung_Praktisch_Musterloesung.Controllers
 {
     public class Lab2Controller : Controller
     {
 
-        /**
+		/**
         * 
         * ANTWORTEN BITTE HIER
+		* 
+		* 1.Session Fixation
         * 
         * */
 
-        public ActionResult Index() {
+		public ActionResult Index() {
 
             var sessionid = Request.QueryString["sid"];
 
